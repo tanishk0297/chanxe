@@ -109,6 +109,13 @@
         </div>
     </section>
 
+    <div id="overlay" class="overlay">
+        <div class="overlay-content">
+          <span class="close" onclick="closeOverlay()">&times;</span>
+          <img src="img\event1.jpg" alt="Poster" style="width:100%">
+        </div>
+      </div>
+
 
     <!-- <section class="banner" id="top">
         <div class="container-fluid">
@@ -337,6 +344,7 @@
         </div>
     </section>
 
+
     <footer>
         <div class="container-fluid">
             <div class="row">
@@ -352,6 +360,22 @@
             </div>
         </div>
     </footer>
+
+    
+    
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          openOverlay();
+        });
+    
+        function openOverlay() {
+          document.getElementById("overlay").style.display = "block";
+        }
+    
+        function closeOverlay() {
+          document.getElementById("overlay").style.display = "none";
+        }
+      </script>
     
     
 
