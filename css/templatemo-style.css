@@ -18,6 +18,13 @@ body {
 	background-color: #fff;
 }
 
+#specific-canvas {
+    width: 392px;
+}
+
+.canvas-class {
+    width: 392px;
+}
 ul {
 	list-style: none;
 	margin: 0px;
