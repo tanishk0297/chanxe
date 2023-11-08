@@ -811,6 +811,8 @@ transition-delay: 0.3s;
 	background-position: center center;
 }
 
+
+
 .contact-right-content .icon {
 	text-align: center;
 	margin: 0 auto;
@@ -1292,8 +1294,8 @@ footer p em {
 /* Random CSS classes to prevent interference with existing CSS */
 .vr-container-579 {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-around;
+    align-items: left;
     flex-direction: column;
     margin: 50px;
     padding: 20px;
