@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editable Document</title>
+    <title id="pageTitle">Editable Document</title>
     <link rel="stylesheet" href="invoice_style.css" type="text/css" media="all" />
     <style>
         [contenteditable="true"] {
@@ -56,7 +56,6 @@
                 </table>
             </div>
 
-
             <!-- Address Section -->
             <div class="bg-slate-100 px-14 py-6 text-sm" id="addressSection" contenteditable="true">
                 <table class="w-full border-collapse border-spacing-0">
@@ -65,7 +64,6 @@
                             <td class="w-1/2 align-top">
                                 <div class="text-sm text-neutral-600">
                                     <p class="font-bold">CHANXE SOLUTIONS</p>
-                                    <!-- <p>Number: 23456789</p> -->
                                     <p>CONTACT: 8355884166</p>
                                     <p>Mail: Chanxesolutions@gmail.com</p>
                                     <p>chanxe.vercel.app</p>
@@ -116,29 +114,6 @@
 
             </div>
 
-            <!-- Total Section
-<div class="px-14 py-10 text-sm text-neutral-700" id="totalSection">
-  <table class="w-full border-collapse border-spacing-0">
-    <tbody>
-      <tr>
-        <td class="w-full"></td>
-        <td>
-          <table class="w-full border-collapse border-spacing-0">
-            <tbody>
-              <tr>
-                <td class="border-b p-3">
-                  <div class="whitespace-nowrap text-slate-400">Net total:</div>
-                </td>
-                <td class="border-b p-3 text-right" id="netTotal" contenteditable="true">₹0.00</td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-
             <!-- Total Section -->
             <div class="px-14 py-10 text-sm text-neutral-700" id="totalSection">
                 <table class="w-full border-collapse border-spacing-0">
@@ -163,7 +138,7 @@
                                         </tr>
                                         <tr>
                                             <td class="border-b p-3">
-                                                <div class="whitespace-nowrap text-slate-400">Balance Amount:</div>
+                                                <div class="whitespace-nowrap text-slate-400">Final Amount:</div>
                                             </td>
                                             <!-- Removed 'contenteditable' attribute -->
                                             <td class="border-b p-3 text-right" id="finalAmount">₹0.00</td>
@@ -176,10 +151,8 @@
                 </table>
             </div>
 
-
             <!-- Print Button -->
             <button onclick="printInvoice()" style="color: #5C6AC4; font-size: 16px; font-weight: bold;">Print</button>
-
 
             <!-- Payment Details Section -->
             <div class="px-14 text-sm text-neutral-700" id="paymentDetailsSection" contenteditable="true">
@@ -195,7 +168,7 @@
                     </p>
                     <p>Or you can google pay on 8355884166
                     </p>
-                    <p>Please share payment screenshot and your mail id after payment
+                    <p>Please share payment screenshot and your mail id after payment
                     </p>
                 </p>
             </div>
@@ -213,134 +186,134 @@
                 <span class="text-slate-300 px-2">|</span> Chanxesolutions@gmail.com
             </footer>
         </div>
-
-        <!-- Add JavaScript to make elements editable and handle real-time updates -->
-        <script>
-            let itemCount = 1;
-
-            function addItem() {
-                itemCount++;
-                const newRow = document.createElement('tr');
-                newRow.innerHTML = `
-            <td class="border-b py-3 pl-3">${itemCount}.</td>
-            <td class="border-b py-3 pl-2" contenteditable="true">Description</td>
-            <!-- Removed 'contenteditable' attribute and added 'oninput' attribute -->
-            <td class="border-b py-3 pl-2 text-right" contenteditable="true" oninput="updateNetTotal()">₹0.00</td>
-          `;
-                document.getElementById('invoiceItemsBody').appendChild(newRow);
-                updateNetTotal();
-            }
-
-            function updateNetTotal() {
-                const amountElements = document.querySelectorAll('#invoiceItemsBody td:nth-child(3)');
-                let total = 0;
-                amountElements.forEach((element) => {
-                    total += parseFloat(element.innerText.replace('₹', '') || 0);
-                });
-                document.getElementById('netTotal').innerText = `₹${total.toFixed(2)}`;
-                updateFinalAmount(); // Added to update final amount in real-time
-            }
-        </script>
-
-        <script>
-            function setInvoiceNumber() {
-                const randomInvoiceNumber = 'CHX' + Math.floor(100000 + Math.random() * 900000);
-                document.getElementById('invoiceNumber').innerText = randomInvoiceNumber;
-            }
-
-            function setCurrentDate() {
-                const currentDate = new Date().toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-                document.getElementById('currentDate').innerText = currentDate;
-            }
-        </script>
-
-        <script>
-            function updateFinalAmount() {
-                const amountElements = document.querySelectorAll('#invoiceItemsBody td:nth-child(3)');
-                let total = 0;
-
-                amountElements.forEach((element) => {
-                    const amount = parseFloat(element.innerText.replace('₹', '').replace(',', '').trim()) || 0;
-
-                    if (!isNaN(amount)) {
-                        total += amount;
-                    }
-                });
-
-                const advanceDeposit = parseFloat(document.getElementById('advanceDeposit').innerText.replace('₹', '').replace(',', '').trim()) || 0;
-                const finalAmount = total - advanceDeposit;
-
-                document.getElementById('finalAmount').innerText = `₹${finalAmount.toFixed(2)}`;
-            }
-        </script>
-
-        <script>
-            let itemCount1 = 1;
-
-            function addItem() {
-                itemCount++;
-                const newRow = document.createElement('tr');
-                newRow.innerHTML = `
-            <td class="border-b py-3 pl-3">${itemCount}.</td>
-            <td class="border-b py-3 pl-2" contenteditable="true">Description</td>
-            <!-- Removed 'contenteditable' attribute and added 'oninput' attribute -->
-            <td class="border-b py-3 pl-2 text-right" contenteditable="true" oninput="updateNetTotal()">₹0.00</td>
-            <td class="border-b py-3 pl-2 text-right">
-              <button class="remove-item-btn" onclick="removeItem(this)">Remove Item</button>
-            </td>
-          `;
-                document.getElementById('invoiceItemsBody').appendChild(newRow);
-                updateNetTotal();
-            }
-
-            function removeItem(button) {
-                const row = button.parentNode.parentNode;
-                row.parentNode.removeChild(row);
-                updateNetTotal();
-            }
-        </script>
-
-        <!-- JavaScript to hide/show elements during printing -->
-        <script>
-            function hideElements() {
-                document.getElementById('addItemBtn').style.display = 'none';
-                const removeButtons = document.querySelectorAll('.remove-item-btn');
-                removeButtons.forEach((button) => {
-                    button.style.display = 'none';
-                });
-                const actionsColumns = document.querySelectorAll('.actions-column');
-                actionsColumns.forEach((column) => {
-                    column.style.display = 'none';
-                });
-            }
-
-            function showElements() {
-                document.getElementById('addItemBtn').style.display = 'block';
-                const removeButtons = document.querySelectorAll('.remove-item-btn');
-                removeButtons.forEach((button) => {
-                    button.style.display = 'inline'; // Assuming 'inline' is the default display for your buttons
-                });
-                const actionsColumns = document.querySelectorAll('.actions-column');
-                actionsColumns.forEach((column) => {
-                    column.style.display = 'table-cell';
-                });
-            }
-
-            function printInvoice() {
-                hideElements();
-                // Use window.print() to open the print dialog with the specified options
-                window.print();
-
-                // Show elements again after printing
-                setTimeout(showElements, 1000); // Adjust the timeout as needed
-            }
-        </script>
-
     </div>
+
+    <!-- JavaScript to make elements editable and handle real-time updates -->
+    <script>
+        let itemCount = 1;
+
+        function addItem() {
+            itemCount++;
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+        <td class="border-b py-3 pl-3">${itemCount}.</td>
+        <td class="border-b py-3 pl-2" contenteditable="true">Description</td>
+        <!-- Removed 'contenteditable' attribute and added 'oninput' attribute -->
+        <td class="border-b py-3 pl-2 text-right" contenteditable="true" oninput="updateNetTotal()">₹0.00</td>
+      `;
+            document.getElementById('invoiceItemsBody').appendChild(newRow);
+            updateNetTotal();
+        }
+
+        function updateNetTotal() {
+            const amountElements = document.querySelectorAll('#invoiceItemsBody td:nth-child(3)');
+            let total = 0;
+            amountElements.forEach((element) => {
+                total += parseFloat(element.innerText.replace('₹', '') || 0);
+            });
+            document.getElementById('netTotal').innerText = `₹${total.toFixed(2)}`;
+            updateFinalAmount(); // Added to update final amount in real-time
+        }
+    </script>
+
+    <script>
+        function setInvoiceNumber() {
+            const randomInvoiceNumber = 'CHX' + Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('invoiceNumber').innerText = randomInvoiceNumber;
+            document.getElementById('pageTitle').innerText = `Invoice ${randomInvoiceNumber}`; // Set title of the document
+        }
+
+        function setCurrentDate() {
+            const currentDate = new Date().toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            document.getElementById('currentDate').innerText = currentDate;
+        }
+    </script>
+
+    <script>
+        function updateFinalAmount() {
+            const amountElements = document.querySelectorAll('#invoiceItemsBody td:nth-child(3)');
+            let total = 0;
+
+            amountElements.forEach((element) => {
+                const amount = parseFloat(element.innerText.replace('₹', '').replace(',', '').trim()) || 0;
+
+                if (!isNaN(amount)) {
+                    total += amount;
+                }
+            });
+
+            const advanceDeposit = parseFloat(document.getElementById('advanceDeposit').innerText.replace('₹', '').replace(',', '').trim()) || 0;
+            const finalAmount = total - advanceDeposit;
+
+            document.getElementById('finalAmount').innerText = `₹${finalAmount.toFixed(2)}`;
+        }
+    </script>
+
+    <script>
+        let itemCount1 = 1;
+
+        function addItem() {
+            itemCount++;
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+        <td class="border-b py-3 pl-3">${itemCount}.</td>
+        <td class="border-b py-3 pl-2" contenteditable="true">Description</td>
+        <!-- Removed 'contenteditable' attribute and added 'oninput' attribute -->
+        <td class="border-b py-3 pl-2 text-right" contenteditable="true" oninput="updateNetTotal()">₹0.00</td>
+        <td class="border-b py-3 pl-2 text-right">
+          <button class="remove-item-btn" onclick="removeItem(this)">Remove Item</button>
+        </td>
+      `;
+            document.getElementById('invoiceItemsBody').appendChild(newRow);
+            updateNetTotal();
+        }
+
+        function removeItem(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+            updateNetTotal();
+        }
+    </script>
+
+    <!-- JavaScript to hide/show elements during printing -->
+    <script>
+        function hideElements() {
+            document.getElementById('addItemBtn').style.display = 'none';
+            const removeButtons = document.querySelectorAll('.remove-item-btn');
+            removeButtons.forEach((button) => {
+                button.style.display = 'none';
+            });
+            const actionsColumns = document.querySelectorAll('.actions-column');
+            actionsColumns.forEach((column) => {
+                column.style.display = 'none';
+            });
+        }
+
+        function showElements() {
+            document.getElementById('addItemBtn').style.display = 'block';
+            const removeButtons = document.querySelectorAll('.remove-item-btn');
+            removeButtons.forEach((button) => {
+                button.style.display = 'inline'; // Assuming 'inline' is the default display for your buttons
+            });
+            const actionsColumns = document.querySelectorAll('.actions-column');
+            actionsColumns.forEach((column) => {
+                column.style.display = 'table-cell';
+            });
+        }
+
+        function printInvoice() {
+            hideElements();
+            // Use window.print() to open the print dialog with the specified options
+            window.print();
+
+            // Show elements again after printing
+            setTimeout(showElements, 1000); // Adjust the timeout as needed
+        }
+    </script>
 </body>
 
 </html>
