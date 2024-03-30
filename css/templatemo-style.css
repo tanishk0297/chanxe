@@ -94,14 +94,15 @@ p {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center center;
-	min-height: 680px;
-	height: 780px;
+	min-height: auto;
+	height: auto;
 }
 
 .left-banner-content h6 {
 	font-size: 14px;
 	font-weight: 700;
 	color: #fff;
+	
 }
 
 .left-banner-content h1 {
@@ -125,7 +126,13 @@ p {
 
 .right-banner-content {
 	padding: 100px 45px;
-	background-color: #f4bc51;
+	background: linear-gradient(to bottom, 
+    #8A2BE2,  /* Purple */
+    #C71585,  /* Light Purple */
+    #FF1493,  /* Pinkish */
+    #d8d809,  /* Yellow */
+    #FFA500   /* Orange */
+  );
 	text-align: center;		
 	min-height: 680px;
 	height: 780px;
@@ -135,8 +142,8 @@ p {
 	font-size: 48px;
 	text-transform: uppercase;
 	font-weight: 700;
-	color: #fff;
-	margin-bottom: 5px;
+	color: #ffb700  ; /* Orange */
+   margin-bottom: 5px;
 }
 
 .right-banner-content .line-dec {
@@ -149,7 +156,7 @@ p {
 .right-banner-content span {
 	font-size: 14px;
 	text-transform: uppercase;
-	color: #fff;
+	color: #ffffff;
 	letter-spacing: 0.5px;
 }
 
@@ -161,7 +168,7 @@ p {
 .right-banner-content p {
 	font-style: italic;
 	font-size: 13px;
-	color: #fff;
+	color: #c066ed;
 }
 
 .right-banner-content .social-icons {
@@ -1270,13 +1277,13 @@ footer p em {
 }
 
 .swiper-container {
-    width: 100%;
-    height: 500px; /* Adjust the height as needed */
+	width: auto; /* Set the desired width */
+	margin: auto; /* Center the container horizontally */
 }
 
 .swiper-slide img {
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
 }
 
